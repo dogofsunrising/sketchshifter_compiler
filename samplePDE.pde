@@ -2,6 +2,13 @@ import some.library.*;
 
 int good = 10;
 
+class MySketch {
+  int value = 10;
+  void hello() {
+    println("hi");
+  }
+}
+
 void setup() {
   size(400, 400);
 }
