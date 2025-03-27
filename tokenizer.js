@@ -81,8 +81,8 @@ class Lexer {
         idStr += this.currentChar();
         this.advance();
       }
-      const types = ["boolean", "byte", "char", "color", "double", "float", "int", "long", "String"];
-      const keywords = ["if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "void", "class", "new", "extends", "import"];
+      const types = ["boolean", "byte", "char", "color", "double", "float", "int", "long", "String", "void"];
+      const keywords = ["if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "class", "new", "extends", "import"];
       if (types.includes(idStr)) {
         return new Token("TYPE", idStr);
       } else if (keywords.includes(idStr)) {

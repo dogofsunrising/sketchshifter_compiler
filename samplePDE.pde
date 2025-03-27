@@ -13,6 +13,8 @@ class MySketch {
   }
 }
 
+MySketch sketch;
+
 void setup() {
   size(400, 400);
 }
