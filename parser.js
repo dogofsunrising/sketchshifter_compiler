@@ -281,7 +281,7 @@ class ImportNode {
       }            
   
       parseClassMember() {
-        if (this.matchToken("TYPE") || this.matchToken("KEYWORD", "void")) {
+        if (this.matchToken("TYPE")) {
           // 型のパースをヘルパー関数で行う
           const typeStr = this.parseType(); 
           if (!this.matchToken("IDENTIFIER")) this.error("Member name expected");

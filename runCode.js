@@ -88,18 +88,18 @@ function runPDE() {
         const tokens = tokenize(code);
         const parser = new Parser(tokens);
         const ast = parser.parseProgram();
-        // const jsCode = generateJavaScriptFromAST(ast);
-        // const fullCode = processingAPI + "\n" + jsCode + "\n" + processingAPI2;
+        const jsCode = generateJavaScriptFromAST(ast);
+        const fullCode = processingAPI + "\n" + jsCode + "\n" + processingAPI2;
 
-        // const oldScript = document.getElementById("compiled-script");
-        // if (oldScript) {
-        //   oldScript.remove();
-        // }
+        const oldScript = document.getElementById("compiled-script");
+        if (oldScript) {
+          oldScript.remove();
+        }
 
-        // const script = document.createElement("script");
-        // script.id = "compiled-script"; 
-        // script.textContent = fullCode;
-        // document.body.appendChild(script);
+        const script = document.createElement("script");
+        script.id = "compiled-script"; 
+        script.textContent = fullCode;
+        document.body.appendChild(script);
       } catch (e) {
         console.error("実行エラー：", e);
         alert("コンパイル/実行エラーがあります");
@@ -396,7 +396,7 @@ class Parser {
     }            
 
     parseClassMember() {
-      if (this.matchToken("TYPE") || this.matchToken("KEYWORD", "void")) {
+      if (this.matchToken("TYPE")) {
         // 型のパースをヘルパー関数で行う
         const typeStr = this.parseType(); 
         if (!this.matchToken("IDENTIFIER")) this.error("Member name expected");
@@ -437,7 +437,7 @@ class Parser {
 
   parseGlobalElement() {
     // グローバル関数または変数
-    if (this.matchToken("TYPE") || this.matchToken("KEYWORD", "void")) {
+    if (this.matchToken("TYPE")) {
       const retType = this.nextToken().value;
       if (!this.matchToken("IDENTIFIER")) this.error("Global element name expected");
       const name = this.nextToken().value;
@@ -939,8 +939,8 @@ class Lexer {
         idStr += this.currentChar();
         this.advance();
       }
-      const types = ["boolean", "byte", "char", "color", "double", "float", "int", "long", "String"];
-      const keywords = ["if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "void", "class", "new", "extends", "import"];
+      const types = ["boolean", "byte", "char", "color", "double", "float", "int", "long", "String", "void"];
+      const keywords = ["if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "class", "new", "extends", "import"];
       if (types.includes(idStr)) {
         return new Token("TYPE", idStr);
       } else if (keywords.includes(idStr)) {

@@ -1,19 +1,6 @@
 import some.library.*;
 
-class MySketch {
-  int value = 10;
-  float[] data = new float[5];
-
-  void doSomething(int a, float b) {
-    if (a > b) {
-      value = a;
-    } else {
-      value = (int)b;
-    }
-  }
-}
-
-MySketch sketch;
+int good = 10;
 
 void setup() {
   size(400, 400);
@@ -21,5 +8,15 @@ void setup() {
 
 void draw() {
   background(200);
-  ellipse(width/2, height/2, 50, 50);
+  ellipse(width/2, height/2, star(), 50);
+}
+
+int star() {
+  if(good == 200){
+
+  } else {
+    good = good + 100 ;
+  }
+ 
+ return good ;
 }
